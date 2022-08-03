@@ -1,0 +1,41 @@
+{
+    "location": {
+        "name": "Kohtla",
+        "region": "Ida-Virumaa",
+        "country": "Estonia",
+        "lat": 59.34,
+        "lon": 27.22,
+        "tz_id": "Europe/Tallinn",
+        "localtime_epoch": 1659551285,
+        "localtime": "2022-08-03 21:28"
+    },
+    "current": {
+        "last_updated_epoch": 1659550500,
+        "last_updated": "2022-08-03 21:15",
+        "temp_c": 18.2,
+        "temp_f": 64.8,
+        "is_day": 1,
+        "condition": {
+            "text": "Sunny",
+            "icon": "//cdn.weatherapi.com/weather/64x64/day/113.png",
+            "code": 1000
+        },
+        "wind_mph": 8.1,
+        "wind_kph": 13.0,
+        "wind_degree": 193,
+        "wind_dir": "SSW",
+        "pressure_mb": 1018.0,
+        "pressure_in": 30.06,
+        "precip_mm": 0.0,
+        "precip_in": 0.0,
+        "humidity": 71,
+        "cloud": 12,
+        "feelslike_c": 18.2,
+        "feelslike_f": 64.8,
+        "vis_km": 10.0,
+        "vis_miles": 6.0,
+        "uv": 5.0,
+        "gust_mph": 17.0,
+        "gust_kph": 27.4
+    }
+}
