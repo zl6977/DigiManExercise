@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 
 # https://www.w3schools.com/python/ref_requests_post.asp
 # https://andmed.stat.ee/en/stat/majandus__energeetika__energia-tarbimine-ja-tootmine__luhiajastatistika/KE21/table/tableViewLayout2
@@ -31,6 +32,7 @@ def DoAction(URL, postBody, ready):
         #Checking the result
         jsonReturned = json.loads(r.text)
         print(jsonReturned)
+        time.sleep(4.0)
         if jsonReturned["code"] == 202:
             isDone = True
         else:
@@ -40,20 +42,44 @@ def DoAction(URL, postBody, ready):
         return False
 
 
-if __name__ == '__main__':
+def MakeOneFrom7to1():
     readyFlag = True
-    url = "http://escop.rd.tut.fi:3000/RTU/SimROB7/services/LoadPallet"
     postBody = {"destUrl": "http://escop.rd.tut.fi:3000/"}
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB7/services/LoadPallet"
     readyFlag = DoAction(url, postBody, readyFlag)
 
     url = "http://escop.rd.tut.fi:3000/RTU/SimCNV7/services/TransZone35"
     readyFlag = DoAction(url, postBody, readyFlag)
 
-    url = "http://escop.rd.tut.fi:3000/RTU/SimCNV8/services/TransZone14"
+    #----------
+    url = "http://escop.rd.tut.fi:3000/RTU/SimCNV8/services/TransZone12"
     readyFlag = DoAction(url, postBody, readyFlag)
 
-    url = "http://escop.rd.tut.fi:3000/RTU/SimCNV8/services/TransZone45"
+    url = "http://escop.rd.tut.fi:3000/RTU/SimCNV8/services/TransZone23"
     readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/ChangePenRED"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/Draw1"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/ChangePenBLUE"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/Draw5"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/ChangePenGREEN"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimROB8/services/Draw9"
+    readyFlag = DoAction(url, postBody, readyFlag)
+
+    url = "http://escop.rd.tut.fi:3000/RTU/SimCNV8/services/TransZone35"
+    readyFlag = DoAction(url, postBody, readyFlag)
+    #------------------
 
     url = "http://escop.rd.tut.fi:3000/RTU/SimCNV9/services/TransZone14"
     readyFlag = DoAction(url, postBody, readyFlag)
@@ -90,4 +116,9 @@ if __name__ == '__main__':
 
     url = "http://escop.rd.tut.fi:3000/RTU/SimROB1/services/UnloadPaper"
     readyFlag = DoAction(url, postBody, readyFlag)
-    
+
+
+if __name__ == '__main__':
+    for i in range(5):
+        r = requests.post("http://escop.rd.tut.fi:3000/RTU/reset", json={})  #json, not data !!
+        MakeOneFrom7to1()
